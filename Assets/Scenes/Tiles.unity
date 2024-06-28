@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 284807549}
   - component: {fileID: 284807551}
   - component: {fileID: 284807550}
+  - component: {fileID: 284807552}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -704,7 +705,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 12
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -827,8 +828,8 @@ Tilemap:
     m_Data: {fileID: -767733656, guid: fad0d79c440478b4e8d5cb04a80cbe29, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 265336342, guid: fad0d79c440478b4e8d5cb04a80cbe29, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: -1371122402, guid: fad0d79c440478b4e8d5cb04a80cbe29, type: 3}
   - m_RefCount: 4
@@ -839,8 +840,8 @@ Tilemap:
     m_Data: {fileID: 1322521363, guid: fad0d79c440478b4e8d5cb04a80cbe29, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1002838571, guid: fad0d79c440478b4e8d5cb04a80cbe29, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 265336342, guid: fad0d79c440478b4e8d5cb04a80cbe29, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: -1085867750, guid: fad0d79c440478b4e8d5cb04a80cbe29, type: 3}
   - m_RefCount: 1
@@ -891,6 +892,42 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!19719996 &284807552
+TilemapCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 284807548}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_MaximumTileChangeCount: 1000
+  m_ExtrusionFactor: 0
+  m_UseDelaunayMesh: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
