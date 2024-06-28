@@ -1533,10 +1533,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2
       objectReference: {fileID: 0}
-    - target: {fileID: 9211731854005653532, guid: bb500bc1cf67d354f9f022f64a52abd5, type: 3}
-      propertyPath: m_ExcludeLayers.m_Bits
-      value: 192
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
