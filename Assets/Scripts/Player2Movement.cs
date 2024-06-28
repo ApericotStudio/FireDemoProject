@@ -35,6 +35,7 @@ public class Player2Movement : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
+        Debug.Log(moveInput);
         moveInput = ctx.ReadValue<Vector2>();
     }
 }
