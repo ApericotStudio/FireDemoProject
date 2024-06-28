@@ -35,7 +35,6 @@ public class Player1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isGrounded());
         rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
     }
 
