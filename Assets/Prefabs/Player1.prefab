@@ -224,12 +224,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 580f7ac704042d94399d7afe11adef13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputChecker: {fileID: 0}
   groundCheck: {fileID: 8812885443495897825}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  image: {fileID: 8466375560886072827}
   moveSpeed: 5
   jumpForce: 5
+  boostForce: 1
   gravity: -9.81
 --- !u!50 &2778506994428492913
 Rigidbody2D:

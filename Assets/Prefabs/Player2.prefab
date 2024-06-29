@@ -359,6 +359,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
+  image: {fileID: 6980113993490264808}
   moveSpeed: 7
   jumpForce: 1
   gravity: 0

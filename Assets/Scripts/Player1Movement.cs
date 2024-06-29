@@ -14,10 +14,13 @@ public class Player1Movement : MonoBehaviour
     private bool collidingPlayer;
     private bool facingRight;
     public PlayerInputChecker inputChecker;
+    private SpriteRenderer sprite;
+    private Color colorA;
+    private Color colorB;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
-
+    [SerializeField] private GameObject image;
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 1f;
@@ -34,6 +37,9 @@ public class Player1Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = image.GetComponent<SpriteRenderer>();
+        colorA = Color.white;
+        colorB = Color.red;
     }
 
 
@@ -106,6 +112,18 @@ public class Player1Movement : MonoBehaviour
         if (collidingPlayer && inputChecker.PressedButton)
         {
             rb.velocity = new Vector2(rb.velocity.x, boostForce);
+        }
+    }
+
+    public void ToggleColor()
+    {
+        if (sprite.color == colorA)
+        {
+            sprite.color = colorB;
+        }
+        else
+        {
+            sprite.color = colorA;
         }
     }
 }

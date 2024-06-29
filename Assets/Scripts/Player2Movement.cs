@@ -12,11 +12,15 @@ public class Player2Movement : MonoBehaviour
     private PlayerControls controls;
     private float horizontal;
     private bool collidingPlayer;
+    private SpriteRenderer sprite;
+    private Color colorA;
+    private Color colorB;
 
     public PlayerInputChecker inputChecker;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
+    [SerializeField] private GameObject image;
 
 
     [SerializeField] private float moveSpeed = 5f;
@@ -30,13 +34,15 @@ public class Player2Movement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sprite = image.GetComponent<SpriteRenderer>();
+        colorA = Color.white;
+        colorB = Color.red;
     }
 
     // Update is called once per frame
     void Update()
     {
         rb.velocity = moveInput * moveSpeed;
-        Debug.Log(collidingPlayer);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -64,5 +70,16 @@ public class Player2Movement : MonoBehaviour
     public void OnFire(InputAction.CallbackContext ctx)
     {
         
+    }
+    public void ToggleColor()
+    {
+        if (sprite.color == colorA)
+        {
+            sprite.color = colorB;
+        }
+        else
+        {
+            sprite.color = colorA;
+        }
     }
 }
