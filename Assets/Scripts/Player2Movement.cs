@@ -11,6 +11,9 @@ public class Player2Movement : MonoBehaviour
     private Vector2 moveInput;
     private PlayerControls controls;
     private float horizontal;
+    private bool collidingPlayer;
+
+    public PlayerInputChecker inputChecker;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -19,7 +22,9 @@ public class Player2Movement : MonoBehaviour
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float gravity = 0f;
-    
+
+    public bool CollidingPlayer { get => collidingPlayer; set => collidingPlayer = value; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,10 +36,33 @@ public class Player2Movement : MonoBehaviour
     void Update()
     {
         rb.velocity = moveInput * moveSpeed;
+        Debug.Log(collidingPlayer);
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collidingPlayer = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collidingPlayer = false;
+        }
+    }
+
 
     public void OnMove(InputAction.CallbackContext ctx)
     {
         moveInput = ctx.ReadValue<Vector2>();
+    }
+
+    public void OnFire(InputAction.CallbackContext ctx)
+    {
+        
     }
 }

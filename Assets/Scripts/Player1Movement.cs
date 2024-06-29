@@ -11,6 +11,9 @@ public class Player1Movement : MonoBehaviour
     private Vector2 moveInput;
     private PlayerControls controls;
     private float horizontal;
+    private bool collidingPlayer;
+    private bool facingRight;
+    public PlayerInputChecker inputChecker;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -18,8 +21,14 @@ public class Player1Movement : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f;
     [SerializeField] private float jumpForce = 1f;
+    [SerializeField] private float boostForce = 1f;
     [SerializeField] private float gravity = -9.81f;
-    
+
+    public bool FacingRight { get => facingRight; set => facingRight = value; }
+    public float BoostForce { get => boostForce; set => boostForce = value; }
+    public float JumpForce { get => jumpForce; set => jumpForce = value; }
+    public bool CollidingPlayer { get => collidingPlayer; set => collidingPlayer = value; }
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,20 +36,51 @@ public class Player1Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    void OnEnable()
-    {
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collidingPlayer = true;
+        }
     }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collidingPlayer = false;
+        }
+    }
+
+
 
     // Update is called once per frame
     void Update()
     {
         rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+
+        // Check and update facing direction based on movement
+        if (horizontal > 0)
+        {
+            // Moving right
+            facingRight = true;
+        }
+        else if (horizontal < 0)
+        {
+
+            facingRight = false;
+        }
     }
 
-    private bool isGrounded()
+    public bool isGrounded()
     {
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    private void lastDirection()
+    {
+
     }
 
     public void OnMove(InputAction.CallbackContext ctx)
@@ -58,6 +98,14 @@ public class Player1Movement : MonoBehaviour
         if(ctx.canceled && rb.velocity.y > 0f)
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+        }
+    }
+
+    public void OnFire(InputAction.CallbackContext ctx)
+    {
+        if (collidingPlayer && inputChecker.PressedButton)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, boostForce);
         }
     }
 }
