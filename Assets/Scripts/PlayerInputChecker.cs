@@ -47,7 +47,9 @@ public class PlayerInputChecker : MonoBehaviour
 
     void Update()
     {
-        if (player1FireAction.triggered && player2FireAction.triggered && player1.CollidingPlayer)
+        bool player2FireHeld = player2FireAction.phase == InputActionPhase.Performed || player2FireAction.phase == InputActionPhase.Started;
+
+        if (player1FireAction.triggered && player2FireHeld && player1.CollidingPlayer)
         {
             pressedButton = true;
             JumpPad();
