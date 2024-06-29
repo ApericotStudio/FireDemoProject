@@ -64,7 +64,10 @@ public class Player1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        if (!inputChecker.HasBoost)
+        {
+            rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
+        }
 
         // Check and update facing direction based on movement
         if (horizontal > 0)

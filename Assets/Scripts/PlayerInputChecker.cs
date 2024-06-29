@@ -9,12 +9,20 @@ public class PlayerInputChecker : MonoBehaviour
     public Player1Movement player1; 
 
     private InputAction player1FireAction;
+    private float currentYVelocity;
     private InputAction player2FireAction;
     [SerializeField] private Rigidbody2D rb;
 
     [HideInInspector] private bool pressedButton;
     public bool MyProperty { get; set; }
     public bool PressedButton { get => pressedButton; set => pressedButton = value; }
+    public bool HasBoost { get => hasBoost; set => hasBoost = value; }
+    public Vector2 BoostAmount { get => boostAmount; set => boostAmount = value; }
+
+    private bool hasBoost;
+
+
+    private Vector2 boostAmount;
 
     private void OnEnable()
     {
@@ -37,7 +45,21 @@ public class PlayerInputChecker : MonoBehaviour
 
     private void BoostPad()
     {
-        rb.velocity = new Vector2(player1.BoostForce, rb.velocity.y);
+        float boostforce;
+        if (player1.FacingRight == true)
+        {
+            boostforce = player1.BoostForce;
+        }
+        else
+        {
+            boostforce = player1.BoostForce * -1;
+        }
+
+        hasBoost = pressedButton;
+
+
+
+        rb.velocity = new Vector2(boostforce, currentYVelocity);
     }
 
     private void JumpPad()
@@ -52,7 +74,8 @@ public class PlayerInputChecker : MonoBehaviour
         if (player1FireAction.triggered && player2FireHeld && player1.CollidingPlayer)
         {
             pressedButton = true;
-            JumpPad();
+            currentYVelocity = rb.velocity.y;
+            BoostPad();
         }
         else
         {

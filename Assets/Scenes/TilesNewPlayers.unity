@@ -1140,6 +1140,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 529609645058422359, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 529609645058422359, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 529609645058422359, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 529609645058422359, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2965540203858973607, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.93
@@ -1190,7 +1206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7858050566284305586, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
       propertyPath: boostForce
-      value: 7
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7858050566284305586, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
       propertyPath: inputChecker
@@ -1199,6 +1215,18 @@ PrefabInstance:
     - target: {fileID: 7955795169895422853, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8608884629825082990, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8608884629825082990, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8608884629825082990, guid: 609ba765b387c69488f66dcdc5c21fd6, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
