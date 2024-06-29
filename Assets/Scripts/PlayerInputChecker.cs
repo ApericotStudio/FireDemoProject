@@ -6,12 +6,14 @@ using UnityEngine.InputSystem;
 public class PlayerInputChecker : MonoBehaviour
 {
     public InputActionAsset inputActions;
-    public Player1Movement player1; 
+    public Player1Movement player1;
+    public Player2Movement player2;
 
     private InputAction player1FireAction;
     private float currentYVelocity;
     private InputAction player2FireAction;
-    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Rigidbody2D rb1;
+    [SerializeField] private Rigidbody2D rb2;
 
     [HideInInspector] private bool pressedButton;
     public bool MyProperty { get; set; }
@@ -20,6 +22,7 @@ public class PlayerInputChecker : MonoBehaviour
     public Vector2 BoostAmount { get => boostAmount; set => boostAmount = value; }
 
     private bool hasBoost;
+    private bool GhostPlayer1 = false;
 
 
     private Vector2 boostAmount;
@@ -55,27 +58,42 @@ public class PlayerInputChecker : MonoBehaviour
             boostforce = player1.BoostForce * -1;
         }
 
-        hasBoost = pressedButton;
+        hasBoost = true;
 
 
 
-        rb.velocity = new Vector2(boostforce, currentYVelocity);
+        rb1.velocity = new Vector2(boostforce, currentYVelocity);
     }
 
     private void JumpPad()
     {
-        rb.velocity = new Vector2(rb.velocity.x, player1.JumpForce);
+        rb1.velocity = new Vector2(rb1.velocity.x, player1.JumpForce);
     }
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift)) //Switch Button
+        {
+            GhostPlayer1 = !GhostPlayer1;
+           
+            player2.ToggleColor();
+        }
+
         bool player2FireHeld = player2FireAction.phase == InputActionPhase.Performed || player2FireAction.phase == InputActionPhase.Started;
 
         if (player1FireAction.triggered && player2FireHeld && player1.CollidingPlayer)
         {
             pressedButton = true;
-            currentYVelocity = rb.velocity.y;
-            BoostPad();
+            currentYVelocity = rb1.velocity.y;
+
+            if (GhostPlayer1)
+            {
+                BoostPad();
+            }
+            else
+            {
+                JumpPad();
+            }
         }
         else
         {

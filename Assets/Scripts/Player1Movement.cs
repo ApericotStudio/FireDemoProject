@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class Player1Movement : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class Player1Movement : MonoBehaviour
     private SpriteRenderer sprite;
     private Color colorA;
     private Color colorB;
+    private float boostTimer;
 
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
@@ -26,6 +28,7 @@ public class Player1Movement : MonoBehaviour
     [SerializeField] private float jumpForce = 1f;
     [SerializeField] private float boostForce = 1f;
     [SerializeField] private float gravity = -9.81f;
+    [SerializeField] private float boostDuration = 2f;
 
     public bool FacingRight { get => facingRight; set => facingRight = value; }
     public float BoostForce { get => boostForce; set => boostForce = value; }
@@ -69,6 +72,15 @@ public class Player1Movement : MonoBehaviour
             rb.velocity = new Vector2(horizontal * moveSpeed, rb.velocity.y);
         }
 
+        else
+        {
+            boostTimer += Time.deltaTime;
+            if(boostTimer >= boostDuration)
+            {
+                inputChecker.HasBoost = false;
+            }
+        }
+
         // Check and update facing direction based on movement
         if (horizontal > 0)
         {
@@ -80,6 +92,8 @@ public class Player1Movement : MonoBehaviour
 
             facingRight = false;
         }
+
+
     }
 
     public bool isGrounded()

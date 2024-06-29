@@ -42,7 +42,11 @@ public class Player2Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        rb.velocity = moveInput * moveSpeed;
+        if (!inputChecker.HasBoost)
+        {
+            rb.velocity = moveInput * moveSpeed;
+        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
